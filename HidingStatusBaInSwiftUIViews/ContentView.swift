@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var hideStatus = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            LabeledContent("SwiftUI") {
+                Text("Learn iOS")
+                    .foregroundStyle(.mint)
+            }
+            .font(.largeTitle)
+            
+            Toggle("Hide statusbar", isOn: $hideStatus)
         }
         .padding()
+        .statusBar(hidden: hideStatus)
     }
 }
 
