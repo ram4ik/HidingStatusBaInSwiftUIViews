@@ -12,22 +12,27 @@ struct ContentView: View {
     @State private var showModel = false
     
     var body: some View {
-        NavigationStack {
-            NavigationLink {
-                Text("This is the destination")
-            } label: {
-                VStack {
-                    LabeledContent("SwiftUI") {
-                        Text("Learn iOS")
-                            .foregroundStyle(.mint)
-                    }
-                    .font(.largeTitle)
-                    
-                    Toggle("Hide statusbar", isOn: $hideStatus)
-                }
-                .padding()
+        VStack {
+            LabeledContent("SwiftUI") {
+                Text("Learn iOS")
+                    .foregroundStyle(.mint)
             }
+            .font(.largeTitle)
+            
+            Toggle("Hide statusbar", isOn: $hideStatus)
         }
+        .onTapGesture {
+            showModel.toggle()
+        }
+        .sheet(isPresented: $showModel, content: {
+            VStack {
+                Text("This is destination")
+                Button("Go back") {
+                    showModel.toggle()
+                }
+            }
+        })
+        .padding()
         .statusBar(hidden: hideStatus)
     }
 }
