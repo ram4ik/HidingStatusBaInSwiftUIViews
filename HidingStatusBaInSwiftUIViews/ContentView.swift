@@ -24,7 +24,7 @@ struct ContentView: View {
         .onTapGesture {
             showModel.toggle()
         }
-        .sheet(isPresented: $showModel, content: {
+        .fullScreenCover(isPresented: $showModel, content: {
             VStack {
                 Text("This is destination")
                 Button("Go back") {
